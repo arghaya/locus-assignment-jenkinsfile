@@ -1,9 +1,12 @@
 pipeline {
     agent any
-    stage('initial_clean_up') {
-        cleanWs()
-    }
+    
     stages {
+        stage('initial_clean_up') {
+        steps {
+                   cleanWs()
+               }
+    }
         stage('git_code_pull') {
             steps {
                 git url: 'https://github.com/arghaya/locus-assignment1.git', branch: '**', credentialsId: '28e81a92-ece2-4b34-bfcf-edbbd30d6f3c'
@@ -46,8 +49,4 @@ pipeline {
                    cleanWs()
                }
     }
-        
-    }
-    
 }
-
