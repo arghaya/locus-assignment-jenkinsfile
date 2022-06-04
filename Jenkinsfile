@@ -39,14 +39,13 @@ pipeline {
                 expression { env.BRANCH_NAME ==~ /(production)/ }
               }
               steps {
-                script {
                   sh 'echo "deploying production"'
-                }
               }
     }
     stage('postbuild_clean_up') {
         steps {
-                   cleanWs()
+            sh 'exit 1'
+            cleanWs()
                }
     }
     }
