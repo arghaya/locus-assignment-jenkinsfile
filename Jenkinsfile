@@ -1,4 +1,4 @@
-node {
+pipeline {
     def ci_pipeline
     stage('initial_clean_up') {
         cleanWs()
