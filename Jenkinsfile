@@ -5,8 +5,10 @@ pipeline {
     }
     stages {
         stage('git_code_pull') {
-        git url: 'https://github.com/arghaya/locus-assignment1.git', branch: '**', credentialsId: '28e81a92-ece2-4b34-bfcf-edbbd30d6f3c'
-    }
+            steps {
+                git url: 'https://github.com/arghaya/locus-assignment1.git', branch: '**', credentialsId: '28e81a92-ece2-4b34-bfcf-edbbd30d6f3c'
+            }
+        }
 //     stage('code check') {
 //         def scannerHome = tool 'sonar-scanner-4.2'
 //         withSonarQubeEnv('sonar-server-7.7') {
@@ -20,18 +22,28 @@ pipeline {
 //         }
 //     }
     stage('Build') {
-        sh 'ls'
+        steps {
+                   sh 'ls'
+               }
     }
     stage('Results') {
-        sh 'pwd'
+        steps {
+                   sh 'ls'
+               }
     }
     stage('Build Deploy Code') {
-        if (env.BRANCH_NAME ==~ /(production)/) {
-            sh 'echo "deploying production"'
-        }
+        when {
+                expression { env.BRANCH_NAME ==~ /(production)/ }
+              }
+              steps {
+                script {
+                  sh 'echo "deploying production"'
+                }
+              }
     }
     stage('postbuild_clean_up') {
-        cleanWs()
-    }
+        steps {
+                   cleanWs()
+               }
     }
 }
