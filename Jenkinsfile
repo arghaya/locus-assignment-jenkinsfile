@@ -44,7 +44,6 @@ pipeline {
     }
     stage('postbuild_clean_up') {
         steps {
-            sh 'exit 1'
             cleanWs()
                }
     }
