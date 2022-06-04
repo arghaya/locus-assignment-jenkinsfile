@@ -4,7 +4,7 @@ node {
         cleanWs()
     }
     stage('git_code_pull') {
-        git url: 'https://github.com/arghaya/locus-assignment1.git', branch: 'main', credentialsId: '28e81a92-ece2-4b34-bfcf-edbbd30d6f3c'
+        git url: 'https://github.com/arghaya/locus-assignment1.git', branch: '**', credentialsId: '28e81a92-ece2-4b34-bfcf-edbbd30d6f3c'
     }
 //     stage('code check') {
 //         def scannerHome = tool 'sonar-scanner-4.2'
