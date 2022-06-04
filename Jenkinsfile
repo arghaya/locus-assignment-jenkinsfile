@@ -1,9 +1,10 @@
 pipeline {
-    def ci_pipeline
+    agent any
     stage('initial_clean_up') {
         cleanWs()
     }
-    stage('git_code_pull') {
+    stages {
+        stage('git_code_pull') {
         git url: 'https://github.com/arghaya/locus-assignment1.git', branch: '**', credentialsId: '28e81a92-ece2-4b34-bfcf-edbbd30d6f3c'
     }
 //     stage('code check') {
@@ -31,5 +32,6 @@ pipeline {
     }
     stage('postbuild_clean_up') {
         cleanWs()
+    }
     }
 }
