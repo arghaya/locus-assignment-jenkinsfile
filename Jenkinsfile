@@ -12,36 +12,41 @@ pipeline {
                 git url: 'https://github.com/arghaya/locus-assignment1.git', branch: '**', credentialsId: '28e81a92-ece2-4b34-bfcf-edbbd30d6f3c'
             }
         }
-//     stage('code check') {
-//         def scannerHome = tool 'sonar-scanner-4.2'
-//         withSonarQubeEnv('sonar-server-7.7') {
-//             for(int i=0;i<selectedProjects.size();i++){
-//                 def currentProject = selectedProjects[i]
-//                 sh """
-//                     cd ${currentProject}
-//                     ${scannerHome}/bin/sonar-scanner
-//                 """
-//             }
+// ------------------------------------  commented sonar code it would take a lot more configuration ---------------
+
+// stage('sonarqube') {
+//     environment {
+//         scannerHome = tool 'SonarQubeScanner'
+//     }
+//     steps {
+//         withSonarQubeEnv('sonarqube') {
+//             sh "${scannerHome}/bin/sonar-scanner"
+//         }
+//         timeout(time: 10, unit: 'MINUTES') {
+//             waitForQualityGate abortPipeline: true
 //         }
 //     }
-    stage('Build') {
+// }
+    stage('build') {
         steps {
                    sh 'ls'
                }
     }
-    stage('Results') {
+    stage('results') {
         steps {
                    sh 'ls'
                }
     }
-    stage('Build Deploy Code') {
-        when {
-                expression { env.BRANCH_NAME ==~ /(production)/ }
-              }
-              steps {
-                  sh 'echo "deploying production"'
-              }
-    }
+        
+// ------------------------------------  commented deploy code as the assignment is for CI only---------------
+//     stage('build_deploy_code') {
+//         when {
+//                 expression { env.BRANCH_NAME ==~ /(production)/ }
+//               }
+//               steps {
+//                   sh 'echo "deploying production"'
+//               }
+//     }
     stage('postbuild_clean_up') {
         steps {
             cleanWs()
